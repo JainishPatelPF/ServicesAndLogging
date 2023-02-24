@@ -1,3 +1,9 @@
+# FILE: Logger.py
+# PROJECT : A03
+# PROGRAMMER(S) : Jainish Patel
+# FIRST VERSION : 2023 - 02 - 24
+# DESCRIPTION : A Logger written in python which gets the logs from test client and puts it in a text file. 
+
 import socket
 import time
 import argparse
@@ -64,10 +70,11 @@ def main(filepath, ip, port):
 
 
 if __name__ == "__main__":
+    # Getting Arguments from the command line Arguments
     parser = argparse.ArgumentParser(description="UDP Logging Server")
     parser.add_argument("filepath", help="path to the log file")
     parser.add_argument("ip", help="IP address to bind to")
     parser.add_argument("port", type=int, help="port to listen on")
     args = parser.parse_args()
     
-    main(args.filepath, args.ip, args.port)
+    main(args.filepath, args.ip, args.port) # Calls the main function with recieved arguments passed
