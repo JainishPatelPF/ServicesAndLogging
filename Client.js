@@ -11,13 +11,14 @@ function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function generateLogMessage() {
+function generateLogMessage(clientId) {
   const type = messageTypes[randomInt(0, messageTypes.length - 1)];
   const format = logFormats[randomInt(0, logFormats.length - 1)];
-  const message = `Test ${type} log message in ${format} format`;
+  const message = `Test ${type} log message in ${format} format from client ${clientId}`;
   return { type, format, message };
 }
 
+//Sends the Log Message
 function sendLogMessage(logMessage) {
   const message = Buffer.from(JSON.stringify(logMessage));
   client.send(message, 0, message.length, serverPort, serverHost, (err) => {
@@ -27,41 +28,48 @@ function sendLogMessage(logMessage) {
   });
 }
 
-function testLogFormats() {
-  console.log('Testing log formats...');
+function testLogFormats(clientId) {
+  console.log(`Client ${clientId} testing log formats...`);
   logFormats.forEach((format) => {
-    const logMessage = { type: 'INFO', format, message: `Testing ${format} log format` };
-    console.log(`Sending ${JSON.stringify(logMessage)}`);
-    sendLogMessage(logMessage);
+    const logMessage = { type: 'INFO', format, message: `Testing ${format} log format from client ${clientId}` };
+    console.log(`Client ${clientId} sending ${JSON.stringify(logMessage)}`);
+    sendLogMessage(logMessage); //calling log message function
   });
 }
 
-function testLogTypes() {
-  console.log('Testing log types...');
+function testLogTypes(clientId) {
+  console.log(`Client ${clientId} testing log types...`);
   messageTypes.forEach((type) => {
-    const logMessage = { type, format: 'text', message: `Testing ${type} log type` };
-    console.log(`Sending ${JSON.stringify(logMessage)}`);
+    const logMessage = { type, format: 'text', message: `Testing ${type} log type from client ${clientId}` };
+    console.log(`Client ${clientId} sending ${JSON.stringify(logMessage)}`);
     sendLogMessage(logMessage);
   });
 }
 
-function testAbusePrevention() {
-  console.log('Testing abuse prevention...');
+function testAbusePrevention(clientId) {
+  console.log(`Client ${clientId} testing abuse prevention...`);
   const numMessages = 10;
   const interval = 500; // in milliseconds
   let count = 0;
   const intervalId = setInterval(() => {
-    const logMessage = generateLogMessage();
-    console.log(`Sending ${JSON.stringify(logMessage)}`);
+    const logMessage = generateLogMessage(clientId);
+    console.log(`Client ${clientId} sending ${JSON.stringify(logMessage)}`);
     sendLogMessage(logMessage);
     count++;
     if (count >= numMessages) {
       clearInterval(intervalId);
-      console.log('Finished sending messages');
+      console.log(`Client ${clientId} finished sending messages`);
     }
   }, interval);
 }
 
-testLogFormats();
-testLogTypes();
-testAbusePrevention();
+function main() {
+  const clientId = randomInt(1, 1000);  //Clients can be identified by random number
+  console.log(`Client ${clientId} started`);
+
+  testLogFormats(clientId); //Testing log formats
+  testLogTypes(clientId); //Testing Log types
+  testAbusePrevention(clientId);  //testing abuse prevention
+}
+
+main();

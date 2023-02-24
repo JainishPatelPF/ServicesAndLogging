@@ -1,34 +1,34 @@
-2023-02-24 13:58:37 {"type" "INFO","format"
-2023-02-24 13:58:37 {"type" "INFO","format"
-2023-02-24 13:58:37 {"type" "INFO","format"
-2023-02-24 13:58:37 {"type" "DEBUG","format"
-2023-02-24 13:58:37 {"type" "INFO","format"
-2023-02-24 13:58:37 {"type" "WARN","format"
-2023-02-24 13:58:37 {"type" "ERROR","format"
-2023-02-24 13:58:38 {"type" "DEBUG","format"
-2023-02-24 13:58:38 {"type" "INFO","format"
-2023-02-24 13:58:39 {"type" "INFO","format"
-2023-02-24 13:58:39 {"type" "WARN","format"
-2023-02-24 13:58:40 {"type" "WARN","format"
-2023-02-24 13:58:40 {"type" "WARN","format"
-2023-02-24 13:58:41 {"type" "WARN","format"
-2023-02-24 13:58:41 {"type" "ERROR","format"
-2023-02-24 13:58:42 {"type" "INFO","format"
-2023-02-24 13:58:42 {"type" "DEBUG","format"
-2023-02-24 15:05:16 {"type" "INFO","format"
-2023-02-24 15:05:16 {"type" "INFO","format"
-2023-02-24 15:05:16 {"type" "INFO","format"
-2023-02-24 15:05:16 {"type" "DEBUG","format"
-2023-02-24 15:05:16 {"type" "INFO","format"
-2023-02-24 15:05:16 {"type" "WARN","format"
-2023-02-24 15:05:16 {"type" "ERROR","format"
-2023-02-24 15:05:17 {"type" "INFO","format"
-2023-02-24 15:05:17 {"type" "DEBUG","format"
-2023-02-24 15:05:18 {"type" "DEBUG","format"
-2023-02-24 15:05:18 {"type" "DEBUG","format"
-2023-02-24 15:05:19 {"type" "DEBUG","format"
-2023-02-24 15:05:19 {"type" "ERROR","format"
-2023-02-24 15:05:20 {"type" "INFO","format"
-2023-02-24 15:05:20 {"type" "WARN","format"
-2023-02-24 15:05:21 {"type" "WARN","format"
-2023-02-24 15:05:21 {"type" "INFO","format"
+2023-02-24 16:16:44 {"type" ('127.0.0.1', 64727) "INFO","format":"text","message":"Testing text log format from client 596"}
+2023-02-24 16:16:44 {"type" ('127.0.0.1', 64727) "INFO","format":"json","message":"Testing json log format from client 596"}
+2023-02-24 16:16:44 {"type" ('127.0.0.1', 64727) "INFO","format":"xml","message":"Testing xml log format from client 596"}
+2023-02-24 16:16:44 {"type" ('127.0.0.1', 64727) "DEBUG","format":"text","message":"Testing DEBUG log type from client 596"}
+2023-02-24 16:16:44 {"type" ('127.0.0.1', 64727) "INFO","format":"text","message":"Testing INFO log type from client 596"}
+2023-02-24 16:16:44 {"type" ('127.0.0.1', 64727) "WARN","format":"text","message":"Testing WARN log type from client 596"}
+2023-02-24 16:16:44 {"type" ('127.0.0.1', 64727) "ERROR","format":"text","message":"Testing ERROR log type from client 596"}
+2023-02-24 16:16:45 {"type" ('127.0.0.1', 64727) "WARN","format":"xml","message":"Test WARN log message in xml format from client 596"}
+2023-02-24 16:16:45 {"type" ('127.0.0.1', 64727) "ERROR","format":"text","message":"Test ERROR log message in text format from client 596"}
+2023-02-24 16:16:46 {"type" ('127.0.0.1', 64727) "ERROR","format":"json","message":"Test ERROR log message in json format from client 596"}
+2023-02-24 16:16:46 {"type" ('127.0.0.1', 64727) "ERROR","format":"json","message":"Test ERROR log message in json format from client 596"}
+2023-02-24 16:16:47 {"type" ('127.0.0.1', 64727) "INFO","format":"json","message":"Test INFO log message in json format from client 596"}
+2023-02-24 16:16:47 {"type" ('127.0.0.1', 64727) "DEBUG","format":"text","message":"Test DEBUG log message in text format from client 596"}
+2023-02-24 16:16:48 {"type" ('127.0.0.1', 64727) "DEBUG","format":"json","message":"Test DEBUG log message in json format from client 596"}
+2023-02-24 16:16:48 {"type" ('127.0.0.1', 64727) "WARN","format":"json","message":"Test WARN log message in json format from client 596"}
+2023-02-24 16:16:49 {"type" ('127.0.0.1', 64727) "ERROR","format":"xml","message":"Test ERROR log message in xml format from client 596"}
+2023-02-24 16:16:49 {"type" ('127.0.0.1', 64727) "ERROR","format":"json","message":"Test ERROR log message in json format from client 596"}
+2023-02-24 16:17:01 {"type" ('127.0.0.1', 63438) "INFO","format":"text","message":"Testing text log format from client 853"}
+2023-02-24 16:17:01 {"type" ('127.0.0.1', 63438) "INFO","format":"json","message":"Testing json log format from client 853"}
+2023-02-24 16:17:01 {"type" ('127.0.0.1', 63438) "INFO","format":"xml","message":"Testing xml log format from client 853"}
+2023-02-24 16:17:01 {"type" ('127.0.0.1', 63438) "DEBUG","format":"text","message":"Testing DEBUG log type from client 853"}
+2023-02-24 16:17:01 {"type" ('127.0.0.1', 63438) "INFO","format":"text","message":"Testing INFO log type from client 853"}
+2023-02-24 16:17:01 {"type" ('127.0.0.1', 63438) "WARN","format":"text","message":"Testing WARN log type from client 853"}
+2023-02-24 16:17:01 {"type" ('127.0.0.1', 63438) "ERROR","format":"text","message":"Testing ERROR log type from client 853"}
+2023-02-24 16:17:02 {"type" ('127.0.0.1', 63438) "DEBUG","format":"json","message":"Test DEBUG log message in json format from client 853"}
+2023-02-24 16:17:02 {"type" ('127.0.0.1', 63438) "INFO","format":"text","message":"Test INFO log message in text format from client 853"}
+2023-02-24 16:17:03 {"type" ('127.0.0.1', 63438) "DEBUG","format":"json","message":"Test DEBUG log message in json format from client 853"}
+2023-02-24 16:17:03 {"type" ('127.0.0.1', 63438) "INFO","format":"text","message":"Test INFO log message in text format from client 853"}
+2023-02-24 16:17:04 {"type" ('127.0.0.1', 63438) "DEBUG","format":"json","message":"Test DEBUG log message in json format from client 853"}
+2023-02-24 16:17:04 {"type" ('127.0.0.1', 63438) "DEBUG","format":"text","message":"Test DEBUG log message in text format from client 853"}
+2023-02-24 16:17:05 {"type" ('127.0.0.1', 63438) "DEBUG","format":"text","message":"Test DEBUG log message in text format from client 853"}
+2023-02-24 16:17:05 {"type" ('127.0.0.1', 63438) "ERROR","format":"xml","message":"Test ERROR log message in xml format from client 853"}
+2023-02-24 16:17:06 {"type" ('127.0.0.1', 63438) "DEBUG","format":"xml","message":"Test DEBUG log message in xml format from client 853"}
+2023-02-24 16:17:06 {"type" ('127.0.0.1', 63438) "INFO","format":"xml","message":"Test INFO log message in xml format from client 853"}
