@@ -7,11 +7,10 @@ bufferSize = 1024
 
 # Rate limit configuration
 MAX_MESSAGES_PER_SECOND = 10
-LAST_MESSAGE_TIME = time.time()
+MAX_MESSAGES_PER_MINUTE = 100
 
-# Log file configuration
-LOG_FILE_PATH = 'C:\\Users\\janis\\Documents\\NAD\\A3\\Code\\log.txt'
-LOG_FORMAT = '{timestamp} - {message}'
+# Logging format configuration
+LOG_FORMAT = "{timestamp} {level} {message}\n"
 
 # Create a datagram socket
 UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
@@ -21,27 +20,43 @@ UDPServerSocket.bind((localIP, localPort))
 
 print("UDP server up and listening")
 
-# Listen for incoming datagrams
+# Initialize message counters for rate limiting
+second_counter = 0
+minute_counter = 0
+
 while True:
     bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
     message = bytesAddressPair[0]
     address = bytesAddressPair[1]
     
-    # Check if rate limit is exceeded
-    current_time = time.time()
-    elapsed_time = current_time - LAST_MESSAGE_TIME
-    if elapsed_time < 1 / MAX_MESSAGES_PER_SECOND:
+    # Rate limit the logging messages
+    if second_counter >= MAX_MESSAGES_PER_SECOND or minute_counter >= MAX_MESSAGES_PER_MINUTE:
+        print("Rate limit exceeded. Ignoring message.")
         continue
     
-    LAST_MESSAGE_TIME = current_time
+    # Get the current timestamp and format it
+    timestamp = int(time.time())
+    timestamp_str = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(timestamp))
     
-    # Format log message
-    timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-    log_message = LOG_FORMAT.format(timestamp=timestamp, message=message.decode())
+    # Parse the message and format it
+    message_str = message.decode("utf-8")
+    level = message_str.split(":")[0]
+    message_text = message_str.split(":")[1].strip()
+    log_message = LOG_FORMAT.format(timestamp=timestamp_str, level=level, message=message_text)
     
-    # Write log message to file
-    with open(LOG_FILE_PATH, 'a') as log_file:
-        log_file.write(log_message + '\n')
+    # Write the log message to the file
+    with open("logs.txt", "a") as f:
+        f.write(log_message)
     
+    # Increment the message counters
+    second_counter += 1
+    minute_counter += 1
+    
+    # Reset the message counters every second and every minute
+    if second_counter >= MAX_MESSAGES_PER_SECOND:
+        second_counter = 0
+    if minute_counter >= MAX_MESSAGES_PER_MINUTE:
+        minute_counter = 0
+        
     # Sending a reply to client
-    UDPServerSocket.sendto(b'OK', address)
+    UDPServerSocket.sendto(b"OK", address)
