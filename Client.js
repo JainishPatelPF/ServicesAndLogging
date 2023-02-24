@@ -1,8 +1,14 @@
 const dgram = require('dgram');
 const client = dgram.createSocket('udp4');
+const args = process.argv.slice(2);
 
-const serverPort = 8080;
-const serverHost = '127.0.0.1';
+if (args.length < 2) {
+  console.log(`Usage: node ${process.argv[1]} <serverHost> <serverPort>`);
+  process.exit(1);
+}
+
+const serverHost = args[0];
+const serverPort = parseInt(args[1], 10);
 
 const messageTypes = ['DEBUG', 'INFO', 'WARN', 'ERROR'];
 const logFormats = ['text', 'json', 'xml'];
@@ -64,12 +70,13 @@ function testAbusePrevention(clientId) {
 }
 
 function main() {
-  const clientId = randomInt(1, 1000);  //Clients can be identified by random number
+  console.log(`Connecting to server at ${serverHost}:${serverPort}`);
+  const clientId = randomInt(1, 1000); //Clients can be identified by random number
   console.log(`Client ${clientId} started`);
 
   testLogFormats(clientId); //Testing log formats
   testLogTypes(clientId); //Testing Log types
-  testAbusePrevention(clientId);  //testing abuse prevention
+  testAbusePrevention(clientId); //testing abuse prevention
 }
 
 main();

@@ -1,5 +1,6 @@
 import socket
 import time
+import argparse
 
 # Rate limit configuration
 MAX_MESSAGES_PER_SECOND = 10
@@ -8,16 +9,14 @@ MAX_MESSAGES_PER_MINUTE = 100
 # Logging format configuration
 LOG_FORMAT = "{timestamp} {level} {client_address} {message}\n"
 
-def main():
-    localIP = "127.0.0.1"
-    localPort = 8080
+def main(filepath, ip, port):
     bufferSize = 1024
     
     # Create a datagram socket
     UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
     
     # Bind to address and ip
-    UDPServerSocket.bind((localIP, localPort))
+    UDPServerSocket.bind((ip, port))
     
     print("UDP server up and listening")
     
@@ -47,7 +46,7 @@ def main():
         log_message = LOG_FORMAT.format(timestamp=timestamp_str, level=level, client_address=client_address, message=message_text)
         
         # Write the log message to the file
-        with open("logs.txt", "a") as f:
+        with open(filepath, "a") as f:
             f.write(log_message)
         
         # Increment the message counters
@@ -63,5 +62,12 @@ def main():
         # Sending a reply to client
         UDPServerSocket.sendto(b"OK", client_address)
 
+
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="UDP Logging Server")
+    parser.add_argument("filepath", help="path to the log file")
+    parser.add_argument("ip", help="IP address to bind to")
+    parser.add_argument("port", type=int, help="port to listen on")
+    args = parser.parse_args()
+    
+    main(args.filepath, args.ip, args.port)
